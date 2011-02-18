@@ -40,11 +40,6 @@
 import sys
 import time
 
-class TaskCompleted(Exception):
-    """docstring for TaskCompleted"""
-    pass
-        
-
 class ProgressBar(object):
     """docstring for ProgressBar
     """
@@ -67,13 +62,10 @@ class ProgressBar(object):
     def __add__(self, increment):
         """docstring for __add__"""
         increment = self._get_progress(increment)
-        if 100 > self.progress:
-            if 100 > self.progress + increment:
-                self.progress += increment
-            else:
-                self.progress = 100
+        if 100 > self.progress + increment:
+            self.progress += increment
         else:
-            raise TaskCompleted
+            self.progress = 100
         return self
     
     def __str__(self):
@@ -105,15 +97,12 @@ class AnimatedProgressBar(ProgressBar):
         self.stdout.write('\r')
         self.stdout.write(str(self))
         self.stdout.flush()
-        time.sleep(0.01)
 
 if __name__ == '__main__':
     p = AnimatedProgressBar(end=1000000, width=20)
     
-    try:
-        while True:
-            p + 1000
-            p.show_progress()
-    except TaskCompleted, e:
-        print "Completed!"
-        
+    while True:
+        p + 1000
+        p.show_progress()
+        if p.progress == 100:
+            break
