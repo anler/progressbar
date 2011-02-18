@@ -1,5 +1,5 @@
 import unittest
-from progressbar import ProgressBar
+from progressbar import ProgressBar, TaskCompleted
 
 class DefaultsTestCase(unittest.TestCase):
     """
@@ -54,8 +54,7 @@ class DefaultsTestCase(unittest.TestCase):
         """
         self.p + 10
         self.assertEqual(str(self.p), '[============>] 100%')
-        self.p + 3                                        
-        self.assertEqual(str(self.p), '[============>] 100%')
+        self.assertRaises(TaskCompleted, self.p.__add__, 3)
 
 
 class CustomizedTestCase(unittest.TestCase):
@@ -119,8 +118,7 @@ class CustomizedTestCase(unittest.TestCase):
         """
         self.p + 100
         self.assertEqual(str(self.p), '100% [####################]')
-        self.p + 3                                        
-        self.assertEqual(str(self.p), '100% [####################]')
+        self.assertRaises(TaskCompleted, self.p.__add__, 3)
 
 if __name__ == '__main__':
     unittest.main()
