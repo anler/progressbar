@@ -1,7 +1,8 @@
-progressbar
-===========
+Python Progressbar
+==================
 
-A Python module with a ProgressBar class which can be used to represent a task's progress in the form of a progress bar and it can be formated in a basic way.
+A progressbar utility for the command line.
+Progressbar is a Python module with a ProgressBar class which can be used to represent a task's progress in the form of a progress bar and it can be formated in a basic way.
 
 Here is some basic usage with the default options:
 

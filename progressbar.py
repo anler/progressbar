@@ -41,7 +41,16 @@ import sys
 import time
 
 class ProgressBar(object):
-    """docstring for ProgressBar
+    """ProgressBar class holds the options of the progress bar.
+    The options are:
+        start   State from which start the progress. For example, if start is 
+                5 and the end is 10, the progress of this state is 50%
+        end     State in which the progress has terminated.
+        width   --
+        fill    String to use for "filled" used to represent the progress
+        blank   String to use for "filled" used to represent remaining space.
+        format  Format
+        incremental
     """
     def __init__(self, start=0, end=10, width=12, fill='=', blank='.',
                 format='[%(fill)s>%(blank)s] %(progress)s%%', 
