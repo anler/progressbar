@@ -1,6 +1,7 @@
 import unittest
 from progressbar import ProgressBar
 
+
 class DefaultsTestCase(unittest.TestCase):
     """
     ProgressBar defaults:
@@ -14,10 +15,10 @@ class DefaultsTestCase(unittest.TestCase):
     """
     def setUp(self):
         self.p = ProgressBar()
-    
+
     def tearDown(self):
         del(self.p)
-    
+
     def test_initialization(self):
         """
         >>> p = ProgressBar()
@@ -25,7 +26,7 @@ class DefaultsTestCase(unittest.TestCase):
         [>............] 0%
         """
         self.assertEqual(str(self.p), '[>............] 0%')
-    
+
     def test_increment(self):
         """
         >>> p = ProgressBar()
@@ -34,7 +35,7 @@ class DefaultsTestCase(unittest.TestCase):
         """
         self.p + 1
         self.assertEqual(str(self.p), '[=>...........] 10%')
-    
+
     def test_reset(self):
         """
         >>> p = ProgressBar()
@@ -45,7 +46,7 @@ class DefaultsTestCase(unittest.TestCase):
         self.p += 8
         self.p.reset()
         self.assertEqual(str(self.p), '[>............] 0%')
-    
+
     def test_full_progress(self):
         """
         >>> p = ProgressBar()
@@ -77,10 +78,10 @@ class CustomizedTestCase(unittest.TestCase):
     }
     def setUp(self):
         self.p = ProgressBar(**self.custom)
-    
+
     def tearDown(self):
         del(self.p)
-    
+
     def test_initialization(self):
         """
         >>> p = ProgressBar(custom)
@@ -121,6 +122,7 @@ class CustomizedTestCase(unittest.TestCase):
         self.assertEqual(str(self.p), '100% [####################]')
         self.p + 100
         self.assertEqual(str(self.p), '100% [####################]')
+
 
 if __name__ == '__main__':
     unittest.main()
