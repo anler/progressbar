@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 progressbar.py
 
@@ -62,7 +63,7 @@ class ProgressBar(object):
         self.blank = blank
         self.format = format
         self.incremental = incremental
-        self.step = 100 / width
+        self.step = 100 / float(width) #fix
         self.reset()
 
     def __add__(self, increment):
@@ -74,7 +75,7 @@ class ProgressBar(object):
         return self
 
     def __str__(self):
-        progressed = int(self.progress) / self.step
+        progressed = int(self.progress / self.step) #fix
         fill = progressed * self.fill
         blank = (self.width - progressed) * self.blank
         return self.format % {'fill': fill, 'blank': blank, 'progress': int(self.progress)}
@@ -109,10 +110,13 @@ class AnimatedProgressBar(ProgressBar):
 
 
 if __name__ == '__main__':
-    p = AnimatedProgressBar(end=1000000, width=20)
+    p = AnimatedProgressBar(end=100, width=80)
 
     while True:
-        p + 1000
+        p + 5
         p.show_progress()
+        time.sleep(0.1)
         if p.progress == 100:
             break
+    print #new line
+
