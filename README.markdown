@@ -45,20 +45,23 @@ And here another example with different options:
 
 Finally, a real example where I had to use it:
 
-	>>> import ftplib
-	>>> import progressbar
-	>>>
-	>>> ftp = ftplib.FTP('ftp.myserver.com', 'user', 'passwd')
-	>>> filesize = ftp.size('path/to/remotefile.zip')
-	>>> progress = progressbar.AnimatedProgressBar(end=filesize, width=50)
-	>>>
-	>>> with open('localfile.zip', 'w') as f:
-	>>>		def callback(chunk):
-	>>>			f.write(chunk)
-	>>>			progress + len(chunk)
-	>>>
-	>>>			# Visual feedback of the progress!
-	>>>			progress.show_progress()
-	>>>		
-	>>>		ftp.retrbinary('RETR path/to/remotefile.zip', callback)
+    >>> import ftplib
+    >>> import progressbar
+    >>>
+    >>> ftp = ftplib.FTP('ftp.myserver.com', 'user', 'passwd')
+    >>> filesize = ftp.size('path/to/remotefile.zip')
+    >>> progress = progressbar.AnimatedProgressBar(end=filesize, width=50)
+    >>>
+    >>> with open('localfile.zip', 'w') as f:
+    >>>     def callback(chunk):
+    >>>         f.write(chunk)
+    >>>         progress + len(chunk)
+    >>>
+    >>>         # Visual feedback of the progress!
+    >>>         progress.show_progress()
+    >>>     
+    >>>     ftp.retrbinary('RETR path/to/remotefile.zip', callback)
 
+---
+
+If you find it usefull fork the repository, improve it and request a pull.
