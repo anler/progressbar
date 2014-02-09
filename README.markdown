@@ -1,15 +1,19 @@
-Python Progressbar
-==================
+# Python Progressbar
 
 A progressbar utility for command line programs.
 Progressbar is a Python module which contains two class so far:
 
-    ProgressBar
-    AnimatedProgressBar
+1. ProgressBar
+2. AnimatedProgressBar
 
-ProgressBar class implements all the base stuffs that makes progress bars work as they does and admit some basic customization.
-AnimatedProgressBar class extends ProgressBar to allow you to use it straightforward in your scripts. By default the AnimatedProgressBar
-sends the output to sys.stdout but you can change this passing a the `stdout` keyword parameter which must be a file-like object.
+`ProgressBar` class implements all the base stuff that makes progress bars work
+as they do and allows some basic customization. `AnimatedProgressBar` class
+extends `ProgressBar` to allow you to use it straightforward in your scripts.
+By default the `AnimatedProgressBar` sends the output to sys.stdout but you
+can change this passing the `stdout` keyword parameter which must be a
+file-like object.
+
+## Usage
 
 Here is some basic usage with the default options:
 
@@ -28,8 +32,8 @@ And here another example with different options:
 
     >>> from progressbar import ProgressBar
     >>> custom_options = {
-    ...     'end': 100, 
-    ...     'width': 20, 
+    ...     'end': 100,
+    ...     'width': 20,
     ...     'fill': '#',
     ...     'format': '%(progress)s%% [%(fill)s%(blank)s]'
     ... }
@@ -59,9 +63,9 @@ Finally, a real example where I had to use it:
     >>>
     >>>         # Visual feedback of the progress!
     >>>         progress.show_progress()
-    >>>     
+    >>>
     >>>     ftp.retrbinary('RETR path/to/remotefile.zip', callback)
 
----
+## Contribution
 
-If you find it usefull fork the repository, improve it and request a pull.
+If you find it useful, fork the repository, improve it and request a pull.
