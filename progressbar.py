@@ -63,31 +63,27 @@ class ProgressBar(object):
         self.blank = blank
         self.format = format
         self.incremental = incremental
-        self.step = 100 / float(width) #fix
         self.reset()
 
     def __add__(self, increment):
-        increment = self._get_progress(increment)
-        if 100 > self.progress + increment:
+        if self.end > self.progress + increment:
             self.progress += increment
         else:
-            self.progress = 100
+            self.progress = float(self.end)
         return self
 
     def __str__(self):
-        progressed = int(self.progress / self.step) #fix
-        fill = progressed * self.fill
-        blank = (self.width - progressed) * self.blank
-        return self.format % {'fill': fill, 'blank': blank, 'progress': int(self.progress)}
+        cur_width = int(self.progress / self.end * self.width)
+        fill = cur_width * self.fill
+        blank = (self.width - cur_width) * self.blank
+        percentage = int(self.progress / self.end * 100)
+        return self.format % {'fill': fill, 'blank': blank, 'progress': percentage}
 
     __repr__ = __str__
 
-    def _get_progress(self, increment):
-        return float(increment * 100) / self.end
-
     def reset(self):
         """Resets the current progress to the start point"""
-        self.progress = self._get_progress(self.start)
+        self.progress = float(self.start)
         return self
 
 
