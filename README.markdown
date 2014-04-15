@@ -43,7 +43,7 @@ And here another example with different options:
     >>> p + 5
     >>> print p
     5% [#...................]
-    >>> p + 9
+    >>> p + 95
     >>> print p
     100% [####################]
 
