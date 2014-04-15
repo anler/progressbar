@@ -72,6 +72,13 @@ class ProgressBar(object):
             self.progress = float(self.end)
         return self
 
+    def __sub__(self, decrement):
+        if self.start < self.progress - decrement:
+            self.progress -= decrement
+        else:
+            self.progress = float(self.start)
+        return self
+
     def __str__(self):
         cur_width = int(self.progress / self.end * self.width)
         fill = cur_width * self.fill
